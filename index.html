@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zombie Hunter</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <img src="images/zombie.gif" id="zombie">
+
+    <p>ZOMBIE HUNTER</p>
+
+    <p id="score counter"> 0 </p>
+
+    <button id = "reset button">
+        Reset
+    </button>
+
+    <script>
+
+        let score = 0;
+        let height = window.innerHeight
+        let width = window.innerWidth
+        let explosionSound = new Audio("src/zombie dying.mp3")
+        
+        function moveZombie () {
+            backToZombie();
+            document.getElementById("zombie").style.top = (Math.random() * (height - 300)) + "px";
+            document.getElementById("zombie").style.left = (Math.random() * (width - 300)) + "px";
+        }        
+        
+        function explosion () {
+            document.getElementById("zombie").src = "images/explosion.gif";
+            explosionSound.play();
+            incrementScore();
+        }
+
+        function incrementScore () {
+            score += 1;
+            document.getElementById("score counter").innerHTML = "SCORE: " + score;
+        }
+
+        function backToZombie () {
+            document.getElementById("zombie").src = "images/zombie.gif";
+        }
+
+        function endGame() {
+            document.getElementById("score counter").innerHTML = "SCORE: 0";
+            moveZombie();
+        }
+
+        setInterval(moveZombie, 2000);
+    
+        document.getElementById("reset button").onclick = endGame;
+        document.getElementById("zombie").onclick = explosion;
+        document.getElementById("zombie").style.top = (Math.random() * (height - 300)) + "px";
+        document.getElementById("zombie").style.left = (Math.random() * (width - 300)) + "px";
+        document.getElementById("score counter").innerHTML = "SCORE: " + score;
+    
+    </script>
+</body>
+</html>
