@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <img src="images/zombie.gif" id="zombie">
+    <img src="images/zombie.gif" id="zombie" alt="zombie">
 
     <p>ZOMBIE HUNTER</p>
 
@@ -24,6 +24,7 @@
         let height = window.innerHeight
         let width = window.innerWidth
         let explosionSound = new Audio("src/zombie dying.ogg")
+        let isZombieDead = false
         
         function moveZombie () {
             backToZombie();
@@ -32,9 +33,12 @@
         }        
         
         function explosion () {
-            document.getElementById("zombie").src = "images/explosion.gif";
-            explosionSound.play();
-            incrementScore();
+            if (isZombieDead == false){
+                document.getElementById("zombie").src = "images/explosion.gif";
+                explosionSound.play();
+                incrementScore();
+                isZombieDead = true
+            }
         }
 
         function incrementScore () {
@@ -44,6 +48,7 @@
 
         function backToZombie () {
             document.getElementById("zombie").src = "images/zombie.gif";
+            isZombieDead = false
         }
 
         function endGame() {
