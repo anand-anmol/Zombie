@@ -8,7 +8,8 @@
 </head>
 <body>
 
-    <img src="images/zombie.gif" id="zombie" alt="zombie">
+    <img src="images/zombie1.gif" id="zombie1" alt="zombie1">
+    <img src="images/zombie2.gif" id="zombie2" alt="zombie2">
 
     <p>ZOMBIE HUNTER</p>
 
@@ -24,20 +25,36 @@
         let height = window.innerHeight
         let width = window.innerWidth
         let explosionSound = new Audio("src/zombie dying.ogg")
-        let isZombieDead = false
+        let isZombie1Dead = false
+        let isZombie2Dead = false
         
-        function moveZombie () {
-            backToZombie();
-            document.getElementById("zombie").style.top = (Math.random() * (height - 300)) + "px";
-            document.getElementById("zombie").style.left = (Math.random() * (width - 300)) + "px";
+        function moveZombie1 () {
+            backToZombie1();
+            document.getElementById("zombie1").style.top = (Math.random() * (height - 300)) + "px";
+            document.getElementById("zombie1").style.left = (Math.random() * (width - 300)) + "px";
         }        
         
-        function explosion () {
-            if (isZombieDead == false){
-                document.getElementById("zombie").src = "images/explosion.gif";
+        function moveZombie2 () {
+            backToZombie2();
+            document.getElementById("zombie2").style.top = (Math.random() * (height - 300)) + "px";
+            document.getElementById("zombie2").style.left = (Math.random() * (width - 300)) + "px";
+        }
+
+        function explosionZombie1 () {
+            if (isZombie1Dead == false){
+                document.getElementById('zombie1').src = "images/explosion.gif";
                 explosionSound.play();
                 incrementScore();
-                isZombieDead = true
+                isZombie1Dead = true
+            }
+        }
+
+        function explosionZombie2 () {
+            if (isZombie2Dead == false){
+                document.getElementById('zombie2').src = "images/explosion.gif";
+                explosionSound.play();
+                incrementScore();
+                isZombie2Dead = true
             }
         }
 
@@ -46,9 +63,14 @@
             document.getElementById("score counter").innerHTML = "SCORE: " + score;
         }
 
-        function backToZombie () {
-            document.getElementById("zombie").src = "images/zombie.gif";
-            isZombieDead = false
+        function backToZombie1 () {
+            document.getElementById("zombie1").src = "images/zombie1.gif";
+            isZombie1Dead = false
+        }
+
+        function backToZombie2 () {
+            document.getElementById("zombie2").src = "images/zombie2.gif";
+            isZombie2Dead = false
         }
 
         function endGame() {
@@ -57,12 +79,16 @@
             moveZombie();
         }
 
-        setInterval(moveZombie, 2000);
+        setInterval(moveZombie1, 2000);
+        setInterval(moveZombie2, 2000);
     
         document.getElementById("reset button").onclick = endGame;
-        document.getElementById("zombie").onclick = explosion;
-        document.getElementById("zombie").style.top = (Math.random() * (height - 300)) + "px";
-        document.getElementById("zombie").style.left = (Math.random() * (width - 300)) + "px";
+        document.getElementById("zombie1").onclick = explosionZombie1;
+        document.getElementById("zombie2").onclick = explosionZombie2;
+        document.getElementById("zombie1").style.top = (Math.random() * (height - 300)) + "px";
+        document.getElementById("zombie1").style.left = (Math.random() * (width - 300)) + "px";
+        document.getElementById("zombie2").style.top = (Math.random() * (height - 300)) + "px";
+        document.getElementById("zombie2").style.left = (Math.random() * (width - 300)) + "px";
         document.getElementById("score counter").innerHTML = "SCORE: " + score;
     
     </script>
