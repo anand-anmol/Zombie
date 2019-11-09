@@ -1,4 +1,10 @@
-#zombie {
+#zombie1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+}
+
+#zombie2 {
     position: absolute;
     width: 300px;
     height: 300px;
