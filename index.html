@@ -16,7 +16,7 @@
     <p id="score counter"> 0 </p>
 
     <button id = "reset button">
-        Reset
+        Reset Game
     </button>
 
     <script>
@@ -76,7 +76,8 @@
         function endGame() {
             document.getElementById("score counter").innerHTML = "SCORE: 0";
             score = 0;
-            moveZombie();
+            moveZombie1();
+            moveZombie2();
         }
 
         setInterval(moveZombie1, 2000);
